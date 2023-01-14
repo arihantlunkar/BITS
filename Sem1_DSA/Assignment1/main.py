@@ -242,6 +242,69 @@ class Queue:
 
 qObj= Queue()
 
+class QueueLinkedList:
+
+	# To initialize the object.
+	def __init__(self):
+
+		self.head = None
+		self.tail = None
+		self.count = 0
+
+	# Function to delete an element
+	# from the front of the queue
+	def queueEnqueue(self, data):
+
+		newNode = Node(data)
+		newNode.next = None
+        
+		# If queueLinkedList is empty
+		if self.head is None:
+			self.head = newNode
+			self.tail = newNode
+			self.count = 1
+			return
+
+		# Push the element into the list
+		else:
+			self.tail.next = newNode
+			self.tail = newNode
+			self.count += 1
+
+
+	# Function to delete an element
+	# from the front of the queue
+	def queueDequeue(self):
+
+		# If queueLinkedList is empty
+		if self.head is None:
+			print("Queue is empty")
+
+		# Pop the front element from list
+		else:
+			x = self.head
+			self.head = self.head.next
+			if self.head is None :
+				self.tail = None
+			self.count -= 1
+
+	# Function to print queuelinkedList elements
+	def queueDisplay(self):
+
+		if self.head is None:
+			print("\nQueue is Empty")
+
+		# Traverse front to rear to
+		# print elements
+		current = self.head
+		while current is not None:
+			print(current.data, "<--", end='')
+			current = current.next
+            
+
+qListObj= QueueLinkedList()
+
+
 def inputIntoSortedLinkedListFromFile():
     while True:
         print("Current menu selected is 7 i.e, Input into Sorted List from File")
@@ -502,6 +565,65 @@ def removeElementFromArrayQueue():
     qObj.queueDisplay()
     print("\n")
 
+def inputIntoListFromFile():
+    while True:
+        print("Current menu selected is 4 i.e, Input into Queue from File")
+        print("Enter file name to proceed or back to go to main menu:")
+        text = input()
+        # If input is back go back to main menu
+        if "back" in text:
+            break
+        # Else if input file exist then process
+        elif file_exists(text):
+            fileObj = open(text, "r")
+            for currentLine in fileObj:
+                splits = currentLine.split(',')
+                for split in splits:
+                    flag = True
+                    try:
+                        split = int(split.strip()) # strip all right and left space
+                    except ValueError:
+                        flag = False # ignore all alphabets, decimals, special characters
+                    if flag:
+                        qListObj.queueEnqueue(split)
+            fileObj.close()
+            qListObj.queueDisplay()
+            print("\n")
+       # Else throw error
+        else:
+            print("File does not exist or invalid input")
+
+def inputIntoListQueueFromCmdLine():
+    while True:
+        print("Current menu selected is 5 i.e, Input into List queue from command line")
+        print("Enter a single integer or comma separated integers to proceed or back to go to main menu:")
+        text = input()
+        # If input is back go back to main menu
+        if "back" in text:
+            break
+        # Else process the input
+        else:
+            splits = text.split(',')
+            for split in splits:
+                flag = True
+                try:
+                    split = int(split.strip()) # strip all right and left space
+                except ValueError:
+                    flag = False # ignore all alphabets, decimals, special characters
+                if flag:
+                    qListObj.queueEnqueue(split)
+
+            qListObj.queueDisplay()
+            print("\n")
+            
+
+
+def removeElementFromListQueue():
+    print("Current menu selected is 6 i.e, Remove element in QueueLinkedList")
+    qListObj.queueDequeue()
+    qListObj.queueDisplay()
+    print("\n")
+
 # infinite while loop
 while True:
     print("Choose a +ve integer from below menu items :-")
@@ -538,11 +660,11 @@ while True:
     elif (3 == choice):
         removeElementFromArrayQueue()
     elif (4 == choice):
-        print("Selected 4")
+        inputIntoListFromFile()
     elif (5 == choice):
-        print("Selected 5")
+        inputIntoListQueueFromCmdLine()
     elif (6 == choice):
-        print("Selected 6")
+        removeElementFromListQueue()
     elif (7 == choice):
         inputIntoSortedLinkedListFromFile()
     elif (8 == choice):
