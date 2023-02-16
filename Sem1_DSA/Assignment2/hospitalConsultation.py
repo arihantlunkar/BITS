@@ -1,3 +1,15 @@
+from patientRecord import PatientRecord
+
+# TODO : handle duplicate entry
+#TODO: what if DLL and Heap empty
+#TODO: Bug in MaxHeap
+
+patientRecordObj = PatientRecord()
+
+def registerPatient(name, age):
+    patientRecordObj.add_patient(name, age)
+
+
 # infinite while loop
 print("Welcome to Dr. Kumar's hospital for senior citizens!")
 
@@ -19,13 +31,27 @@ while True:
     choice = int(choice)
 
     if (1 == choice):
-        print("Option not implemented yet.")
+        with open("input.txt") as f:
+            for line in f:
+                name, age = line.strip().split(", ")
+                age = age.strip()
+                if 0 == age.isdigit() or int(age) <= 0:
+                    continue
+                registerPatient(name, int(age))
     elif (2 == choice):
-        print("Option not implemented yet.")
+        name = input("Enter patient name: ")
+        age = 0
+        while True:
+            age = input("Enter patient age: ")
+            if 0 == age.isdigit() or int(age) <= 0:
+                print("Invalid age!")
+                continue
+            break
+        registerPatient(name, int(age))
     elif (3 == choice):
-        print("Option not implemented yet.")
+        print("Next patient is ", patientRecordObj.next_patient().name)
     elif (4 == choice):
-        print("Option not implemented yet.")
+        patientRecordObj.print_list()
     elif (5 == choice):
         print("Thank you for using the consultation system. Goodbye!")
         break

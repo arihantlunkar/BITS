@@ -9,8 +9,8 @@ class MaxHeap:
         self.maxsize = size
         self.size = 0
         self.Heap = [0] * (self.maxsize + 1)
-        # self.Heap[0] = PatientNode('Zero',9999,000)
-        self.Heap[0] = sys.maxsize
+        self.Heap[0] = PatientNode('Zero',9999,000)
+        #self.Heap[0] = sys.maxsize
         self.FRONT = 1
 
     # Function to return the position of
@@ -78,17 +78,10 @@ class MaxHeap:
         self.Heap[self.size] = element
 
         current = self.size
-        par = self.parent(current)
 
-        print(current)
-        print(par)
-
-    
-       
-        if(current != 1 and par != 0):
-            while (self.Heap[current].age > self.Heap[self.parent(current)].age):
-                self.swap(current, self.parent(current))
-                current = self.parent(current)
+        while (self.Heap[current].age > self.Heap[self.parent(current)].age):
+            self.swap(current, self.parent(current))
+            current = self.parent(current)
 
     # Function to print the contents of the heap
     def Print(self):
@@ -112,40 +105,40 @@ class MaxHeap:
         self.size -= 1
         self.maxHeapify(self.FRONT)
 
-        return popped.patient_id
+        return popped
 
 
-# Driver Code
-if __name__ == "__main__":
-    sampleNode = PatientNode('Abc',55,123)
-    sampleNode2 = PatientNode('Def',57,124)
-    print('The maxHeap is ')
+# # Driver Code
+# if __name__ == "__main__":
+#     sampleNode = PatientNode('Abc',55,123)
+#     sampleNode2 = PatientNode('Def',57,124)
+#     print('The maxHeap is ')
 
-    maxHeap = MaxHeap(15)
-    maxHeap.insert(sampleNode)
-    maxHeap.insert(sampleNode2)
-    # maxHeap.insert(3)
-    # maxHeap.insert(17)
-    # maxHeap.insert(10)
-    # maxHeap.insert(84)
-    # maxHeap.insert(19)
-    # maxHeap.insert(19)
-    # maxHeap.insert(6)
-    # maxHeap.insert(22)
-    # maxHeap.insert(9)
-    # maxHeap.insert(99)
-    # maxHeap.insert(99)
+#     maxHeap = MaxHeap(15)
+#     maxHeap.insert(sampleNode)
+#     maxHeap.insert(sampleNode2)
+#     # maxHeap.insert(3)
+#     # maxHeap.insert(17)
+#     # maxHeap.insert(10)
+#     # maxHeap.insert(84)
+#     # maxHeap.insert(19)
+#     # maxHeap.insert(19)
+#     # maxHeap.insert(6)
+#     # maxHeap.insert(22)
+#     # maxHeap.insert(9)
+#     # maxHeap.insert(99)
+#     # maxHeap.insert(99)
 
-    maxHeap.Print()
+#     maxHeap.Print()
 
-    # print("The Next patient is " + str(maxHeap.extractMax()))
-    # maxHeap.Print()
-    # print("The Next patient is " + str(maxHeap.extractMax()))
-    # maxHeap.Print()
-    # print("The Next patient is " + str(maxHeap.extractMax()))
-    # maxHeap.Print()
-    # print("The Next patient is " + str(maxHeap.extractMax()))
-    # maxHeap.Print()
-    # print("The Next patient is " + str(maxHeap.extractMax()))
-    # maxHeap.Print()
-    # print("The Next patient is " + str(maxHeap.extractMax()))
+#     # print("The Next patient is " + str(maxHeap.extractMax()))
+#     # maxHeap.Print()
+#     # print("The Next patient is " + str(maxHeap.extractMax()))
+#     # maxHeap.Print()
+#     # print("The Next patient is " + str(maxHeap.extractMax()))
+#     # maxHeap.Print()
+#     # print("The Next patient is " + str(maxHeap.extractMax()))
+#     # maxHeap.Print()
+#     # print("The Next patient is " + str(maxHeap.extractMax()))
+#     # maxHeap.Print()
+#     # print("The Next patient is " + str(maxHeap.extractMax()))
