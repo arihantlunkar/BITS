@@ -1,7 +1,7 @@
 # Python3 implementation of Max Heap
 import sys
 from patientNode import PatientNode
-import heapq
+#import heapq
 
 # class MaxHeap:
 
@@ -142,7 +142,7 @@ class MaxHeap:
     def __init__(self):
         self._heap = []
         
-    def push(self, patient):
+    def enqueuePatient(self, patient):
         self._heap.append(patient)
         self._sift_up(len(self._heap) - 1)
         
