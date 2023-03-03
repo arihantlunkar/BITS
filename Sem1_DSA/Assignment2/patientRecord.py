@@ -4,7 +4,7 @@ from consultQueue import MaxHeap
 class PatientRecord:
     def __init__(self):
         self.head = None
-        self.consultQueue = MaxHeap(1000)
+        self.consultQueue = MaxHeap()
         self.count = 0
 
     def add_patient(self, name, age):
@@ -19,7 +19,7 @@ class PatientRecord:
             curr = curr.next
         curr.next = new_patient
         new_patient.prev = curr
-        self.consultQueue.insert(new_patient)
+        self.consultQueue.push(new_patient)
         return new_patient.patient_id
 
     def delete_patient(self, patient_id):
@@ -44,7 +44,8 @@ class PatientRecord:
         return -1
 
     def next_patient(self):
-        patient = self.consultQueue.extractMax()
+        patient = self.consultQueue.extract_max()
+        print(patient)
         self.delete_patient(patient.patient_id)
         return patient
 
