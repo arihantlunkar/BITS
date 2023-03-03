@@ -47,7 +47,8 @@ def importPatientsFromFile():
             with open(file) as f:
                 count = 0
                 for line in f:
-                    name, age = line.strip().split(", ")
+                    name, age = line.strip().split(",")
+                    name = name.strip()
                     age = age.strip()
                     if 0 == age.isdigit() or int(age) <= 0:
                         continue
